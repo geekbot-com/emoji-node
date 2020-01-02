@@ -1,5 +1,5 @@
 {
-  "name": "emoji-node",
+  "name": "@geekbot/emoji-node",
   "version": "1.8.5",
   "description": "simple emoji support for node.js projects",
   "author": "Arshpreet Wadehra <me@wadehrarshpreet.com>",
