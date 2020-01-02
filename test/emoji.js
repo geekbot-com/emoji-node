@@ -11,13 +11,13 @@ describe("emoji.js", function () {
     it("should return an emoji code", function () {
       var coffee = emoji.get('coffee');
       should.exist(coffee);
-      coffee.should.be.exactly('☕️');
+      coffee.should.be.exactly('☕');
     });
 
     it("should support github flavored markdown emoji", function () {
       var coffee = emoji.get(':coffee:');
       should.exist(coffee);
-      coffee.should.be.exactly('☕️');
+      coffee.should.be.exactly('☕');
     });
   });
 
@@ -33,21 +33,21 @@ describe("emoji.js", function () {
 
   describe("which(emoji_code)", function () {
     it("should return name of the emoji", function () {
-      var coffee = emoji.which('☕️');
+      var coffee = emoji.which('☕');
       should.exist(coffee);
       coffee.should.be.exactly('coffee');
     });
 
     it("should work for differently formed characters", function () {
-      var umbrella = emoji.which('☔');
+      var umbrella = emoji.which('☂️');
       should.exist(umbrella);
       umbrella.should.be.exactly('umbrella');
     });
 
     it("should return the same name for differently formed characters", function () {
-      var umbrella1 = emoji.which('☔');
+      var umbrella1 = emoji.which('☂️');
       should.exist(umbrella1);
-      var umbrella2 = emoji.which('☔️');
+      var umbrella2 = emoji.which('☂️');
       should.exist(umbrella2);
       umbrella1.should.equal(umbrella2);
     });
@@ -70,7 +70,7 @@ describe("emoji.js", function () {
     it("should parse :emoji: in a string and replace them with the right emoji", function () {
       var coffee = emoji.emojify('I :heart:  :coffee:! -  :hushed::star::heart_eyes:  ::: test : : :+1:+');
       should.exist(coffee);
-      coffee.should.be.exactly('I ❤️  ☕️! -  😯⭐️😍  ::: test : : 👍+');
+      coffee.should.be.exactly('I ❤️  ☕! -  😯⭐😍  ::: test : : 👍+');
     });
 
     it("should handle flags correctly", function() {
@@ -82,7 +82,7 @@ describe("emoji.js", function () {
     it("should leave unknown emoji", function () {
       var coffee = emoji.emojify('I :unknown_emoji: :star: :another_one:');
       should.exist(coffee);
-      coffee.should.be.exactly('I :unknown_emoji: ⭐️ :another_one:');
+      coffee.should.be.exactly('I :unknown_emoji: ⭐ :another_one:');
     });
 
     it("should replace unknown emoji using provided cb function", function () {
@@ -90,7 +90,7 @@ describe("emoji.js", function () {
         return name;
       });
       should.exist(coffee);
-      coffee.should.be.exactly('I unknown_emoji ⭐️ another_one');
+      coffee.should.be.exactly('I unknown_emoji ⭐ another_one');
     });
 
     it("should wrap emoji using provided format function", function () {
@@ -99,7 +99,7 @@ describe("emoji.js", function () {
       });
 
       should.exist(coffee);
-      coffee.should.be.exactly('I <img alt="❤️" src="heart.png" /> <img alt="☕️" src="coffee.png" />');
+      coffee.should.be.exactly('I <img alt="❤️" src="heart.png" /> <img alt="☕" src="coffee.png" />');
     });
 
     it("should not wrap unknown using provided format function", function () {
@@ -108,7 +108,7 @@ describe("emoji.js", function () {
       });
 
       should.exist(coffee);
-      coffee.should.be.exactly('I :unknown_emoji: <img alt="☕️" src="coffee.png" />');
+      coffee.should.be.exactly('I :unknown_emoji: <img alt="☕" src="coffee.png" />');
     });
 
     it("should replace unknown emojis and wrap known emojis using cb functions", function () {
@@ -122,14 +122,14 @@ describe("emoji.js", function () {
       );
 
       should.exist(coffee);
-      coffee.should.be.exactly('I unknown_emoji <img alt="☕️" src="coffee.png" />');
+      coffee.should.be.exactly('I unknown_emoji <img alt="☕" src="coffee.png" />');
     });
   });
 
   it("should return an emoji code", function () {
     var coffee = emoji.emoji.coffee;
     should.exist(coffee);
-    coffee.should.be.exactly('☕️');
+    coffee.should.be.exactly('☕');
   });
 
   describe("search(str)", function () {
@@ -167,15 +167,15 @@ describe("emoji.js", function () {
 
   describe("unemojify(str)", function () {
     it("should parse emoji and replace them with :emoji:", function() {
-      var coffee = emoji.unemojify('I ❤️  ☕️! -  😯⭐️😍  ::: test : : 👍+');
+      var coffee = emoji.unemojify('I ❤️  ☕! -  😯⭐️😍  ::: test : : 👍+');
       should.exist(coffee);
       coffee.should.be.exactly('I :heart:  :coffee:! -  :hushed::star::heart_eyes:  ::: test : : :thumbsup:+');
     })
 
     it("should leave unknown emoji", function () {
-      var coffee = emoji.unemojify('I ⭐️ :another_one: 🥕');
+      var coffee = emoji.unemojify('I ⭐ :another_one:');
       should.exist(coffee);
-      coffee.should.be.exactly('I :star: :another_one: 🥕');
+      coffee.should.be.exactly('I :star: :another_one:');
     });
 
     it("should parse a complex emoji like woman-kiss-woman and replace it with :woman-kiss-woman:", function() {
@@ -243,7 +243,7 @@ describe("emoji.js", function () {
     });
 
     it('Should return false for unknown emoji codes', function() {
-      var result = emoji.hasEmoji('🍕❤️‍💋‍☕');
+      var result = emoji.hasEmoji('🍕☕');
       result.should.equal(false);
     });
   });
@@ -287,7 +287,7 @@ describe("emoji.js", function () {
     });
 
     it('Non existing complex emojis are known to be ignored', function() {
-      var result = emoji.replace('Some 🍕❤️‍💋‍☕ emoji', '');
+      var result = emoji.replace('Some 🍕☕ emoji', '');
       result.should.not.equal('Some emoji');
     });
   });
