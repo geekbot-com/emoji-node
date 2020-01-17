@@ -1,6 +1,6 @@
 {
   "name": "@geekbot/emoji-node",
-  "version": "1.8.8",
+  "version": "1.8.9",
   "description": "simple emoji support for node.js projects",
   "author": "Arshpreet Wadehra <me@wadehrarshpreet.com>",
   "repository": {
