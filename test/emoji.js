@@ -85,6 +85,12 @@ describe("emoji.js", function () {
       coffee.should.be.exactly('I :unknown_emoji: ⭐ :another_one:');
     });
 
+    it('should not emojify words', function() {
+      var coffee = emoji.emojify('I love my bed!! start');
+      should.exist(coffee);
+      coffee.should.be.exactly('I love my bed!! start');
+    });
+
     it("should replace unknown emoji using provided cb function", function () {
       var coffee = emoji.emojify('I :unknown_emoji: :star: :another_one:', function(name) {
         return name;
